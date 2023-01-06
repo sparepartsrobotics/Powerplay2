@@ -66,16 +66,15 @@ public class teleop extends LinearOpMode {
 
     public void controls() throws InterruptedException {
 
-//        telemetry.addData("time",time);
-
-        if (time < 80) {
+        telemetry.addData("time",time);
+        //teleOp
+        if(time < 75) {
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE);
-        } else if (time > 110) {
+        //END of ENDGAME
+        } else if (time > 80) {
+            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
+        } else{
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.STROBE_RED);
-        } else if(time > 90) {
-            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE);
-        } else {
-            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.STROBE_GOLD);
         }
 
         joystick1LeftX = gamepad1.left_stick_x;
@@ -109,7 +108,7 @@ public class teleop extends LinearOpMode {
 
         if (gamepad1.a) {
 
-            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.SINELON_LAVA_PALETTE);
+            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.LAWN_GREEN);
 
             int slideJunctionTarget;
             slideJunctionTarget = groundJunction;
@@ -127,6 +126,8 @@ public class teleop extends LinearOpMode {
             robot.bottomSlideMotor.setPower(1);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
+
+                robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.LAWN_GREEN);
 
                 telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
                 telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
@@ -156,6 +157,7 @@ public class teleop extends LinearOpMode {
                     robot.claw.setPosition(0.2);
                 }
             }
+
             robot.leftSlideMotor.setPower(0);
             robot.rightSlideMotor.setPower(0);
             robot.topSlideMotor.setPower(0);
@@ -168,7 +170,7 @@ public class teleop extends LinearOpMode {
 
         if (gamepad1.b) {
 
-            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
+            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.DARK_RED);
 
             int slideJunctionTarget;
             slideJunctionTarget = lowJunction;
@@ -186,6 +188,8 @@ public class teleop extends LinearOpMode {
             robot.bottomSlideMotor.setPower(1);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
+
+                robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.DARK_RED);
 
                 telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
                 telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
@@ -246,6 +250,8 @@ public class teleop extends LinearOpMode {
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
+                robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.YELLOW);
+
                 telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
                 telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
                 telemetry.addData("topMotor", robot.leftSlideMotor.getCurrentPosition());
@@ -286,7 +292,7 @@ public class teleop extends LinearOpMode {
 
         if (gamepad1.x) {
 
-            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RED);
+            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLUE_VIOLET);
 
             int slideJunctionTarget;
             slideJunctionTarget = highJunction;
@@ -304,6 +310,8 @@ public class teleop extends LinearOpMode {
             robot.bottomSlideMotor.setPower(1);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
+
+                robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLUE_VIOLET);
 
                 telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
                 telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
@@ -456,8 +464,6 @@ public class teleop extends LinearOpMode {
 
         if (gamepad1.dpad_left) {
 
-            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE);
-
             int slideJunctionTarget;
             slideJunctionTarget = conePosition5;
             robot.leftSlideMotor.setTargetPosition(slideJunctionTarget);
@@ -507,8 +513,6 @@ public class teleop extends LinearOpMode {
         }
 
         if (gamepad1.dpad_up) {
-
-            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE);
 
             int slideJunctionTarget;
             slideJunctionTarget = conePosition4;
@@ -560,8 +564,6 @@ public class teleop extends LinearOpMode {
 
         if (gamepad1.dpad_right) {
 
-            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE);
-
             int slideJunctionTarget;
             slideJunctionTarget = conePosition3;
             robot.leftSlideMotor.setTargetPosition(slideJunctionTarget);
@@ -612,8 +614,6 @@ public class teleop extends LinearOpMode {
 
         if (gamepad1.dpad_down) {
 
-            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE);
-
             int slideJunctionTarget;
             slideJunctionTarget = conePosition2;
             robot.leftSlideMotor.setTargetPosition(slideJunctionTarget);
@@ -661,6 +661,7 @@ public class teleop extends LinearOpMode {
             robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
+        telemetry.update();
     }
 }
 
