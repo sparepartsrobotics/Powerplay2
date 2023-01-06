@@ -18,13 +18,14 @@ public class teleop extends LinearOpMode {
     double frMotorPower = 1;
     double brMotorPower = 1;
     double blMotorPower = 1;
-    double rightSlideMotor;
-    double leftSlideMotor;
+
     double joystick1LeftX;
     double joystick1RightX;
     double joystick1LeftY;
 
-    int highJunction = 1080;
+    double motorVelocity = 2800;
+
+    int highJunction = 1075;
     int mediumJunction = 775;
     int lowJunction = 500;
     int groundJunction = 100;
@@ -67,12 +68,18 @@ public class teleop extends LinearOpMode {
     public void controls() throws InterruptedException {
 
         telemetry.addData("time",time);
+        telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
+        telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
+        telemetry.addData("topMotor", robot.leftSlideMotor.getCurrentPosition());
+        telemetry.addData("bottomMotor", robot.leftSlideMotor.getCurrentPosition());
+
         //teleOp
         if(time < 75) {
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE);
         //END of ENDGAME
         } else if (time > 80) {
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
+        //Right BEFORE ENDGAME
         } else{
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.STROBE_RED);
         }
@@ -120,20 +127,14 @@ public class teleop extends LinearOpMode {
             robot.rightSlideMotor.setMode(RUN_TO_POSITION);
             robot.topSlideMotor.setMode(RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(RUN_TO_POSITION);
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
                 robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.LAWN_GREEN);
-
-                telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("topMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("bottomMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.update();
 
                 joystick1LeftX = gamepad1.left_stick_x;
                 joystick1LeftY = gamepad1.left_stick_y;
@@ -182,20 +183,14 @@ public class teleop extends LinearOpMode {
             robot.rightSlideMotor.setMode(RUN_TO_POSITION);
             robot.topSlideMotor.setMode(RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(RUN_TO_POSITION);
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
                 robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.DARK_RED);
-
-                telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("topMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("bottomMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.update();
 
                 joystick1LeftX = gamepad1.left_stick_x;
                 joystick1LeftY = gamepad1.left_stick_y;
@@ -243,20 +238,14 @@ public class teleop extends LinearOpMode {
             robot.rightSlideMotor.setMode(RUN_TO_POSITION);
             robot.topSlideMotor.setMode(RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(RUN_TO_POSITION);
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
                 robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.YELLOW);
-
-                telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("topMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("bottomMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.update();
 
                 joystick1LeftX = gamepad1.left_stick_x;
                 joystick1LeftY = gamepad1.left_stick_y;
@@ -304,20 +293,15 @@ public class teleop extends LinearOpMode {
             robot.rightSlideMotor.setMode(RUN_TO_POSITION);
             robot.topSlideMotor.setMode(RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(RUN_TO_POSITION);
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
-            while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
+            long startTime = System.currentTimeMillis();
+            while ((System.currentTimeMillis()-startTime)<1500 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
                 robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLUE_VIOLET);
-
-                telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("topMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("bottomMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.update();
 
                 joystick1LeftX = gamepad1.left_stick_x;
                 joystick1LeftY = gamepad1.left_stick_y;
@@ -364,18 +348,12 @@ public class teleop extends LinearOpMode {
             robot.rightSlideMotor.setMode(RUN_TO_POSITION);
             robot.topSlideMotor.setMode(RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(RUN_TO_POSITION);
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
-
-                telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("topMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.addData("bottomMotor", robot.leftSlideMotor.getCurrentPosition());
-                telemetry.update();
 
                 joystick1LeftX = gamepad1.left_stick_x;
                 joystick1LeftY = gamepad1.left_stick_y;
@@ -423,10 +401,10 @@ public class teleop extends LinearOpMode {
             robot.rightSlideMotor.setMode(RUN_TO_POSITION);
             robot.topSlideMotor.setMode(RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(RUN_TO_POSITION);
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
@@ -474,10 +452,10 @@ public class teleop extends LinearOpMode {
             robot.rightSlideMotor.setMode(RUN_TO_POSITION);
             robot.topSlideMotor.setMode(RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(RUN_TO_POSITION);
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setPower(motorVelocity);
+            robot.bottomSlideMotor.setPower(motorVelocity);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
                 joystick1LeftX = gamepad1.left_stick_x;
@@ -524,10 +502,10 @@ public class teleop extends LinearOpMode {
             robot.rightSlideMotor.setMode(RUN_TO_POSITION);
             robot.topSlideMotor.setMode(RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(RUN_TO_POSITION);
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
                 joystick1LeftX = gamepad1.left_stick_x;
@@ -574,10 +552,10 @@ public class teleop extends LinearOpMode {
             robot.rightSlideMotor.setMode(RUN_TO_POSITION);
             robot.topSlideMotor.setMode(RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(RUN_TO_POSITION);
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
                 joystick1LeftX = gamepad1.left_stick_x;
@@ -624,10 +602,10 @@ public class teleop extends LinearOpMode {
             robot.rightSlideMotor.setMode(RUN_TO_POSITION);
             robot.topSlideMotor.setMode(RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(RUN_TO_POSITION);
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
             while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
                 joystick1LeftX = gamepad1.left_stick_x;

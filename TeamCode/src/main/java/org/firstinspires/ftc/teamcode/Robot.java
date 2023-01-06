@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -16,10 +17,10 @@ public class Robot {
     public DcMotor rearRight;
     public DcMotor rearLeft;
     //Linear Slide Motors
-    public DcMotor leftSlideMotor;
-    public DcMotor rightSlideMotor;
-    public DcMotor topSlideMotor;
-    public DcMotor bottomSlideMotor;
+    public DcMotorEx leftSlideMotor;
+    public DcMotorEx rightSlideMotor;
+    public DcMotorEx topSlideMotor;
+    public DcMotorEx bottomSlideMotor;
     //servo for claw
     public Servo claw;
 
@@ -33,10 +34,10 @@ public class Robot {
         rearLeft = hardwareMap.dcMotor.get("lrWheel");
         rearRight = hardwareMap.dcMotor.get("rrWheel");
         //Linear Slide Motors
-        leftSlideMotor = hardwareMap.dcMotor.get("leftSlideMotor");
-        rightSlideMotor = hardwareMap.dcMotor.get("rightSlideMotor");
-        topSlideMotor = hardwareMap.dcMotor.get("topSlideMotor");
-        bottomSlideMotor = hardwareMap.dcMotor.get("bottomSlideMotor");
+        leftSlideMotor = hardwareMap.get(DcMotorEx.class, "leftSlideMotor");
+        rightSlideMotor = hardwareMap.get(DcMotorEx.class,"rightSlideMotor");
+        topSlideMotor = hardwareMap.get(DcMotorEx.class,"topSlideMotor");
+        bottomSlideMotor = hardwareMap.get(DcMotorEx.class, "bottomSlideMotor");
         //Servo for claw
         claw = hardwareMap.servo.get("claw");
         //LED lights
