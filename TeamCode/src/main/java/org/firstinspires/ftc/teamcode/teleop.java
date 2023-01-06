@@ -6,7 +6,6 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp (name = "TeleOp")
 
@@ -298,8 +297,8 @@ public class teleop extends LinearOpMode {
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
 
-            long startTime = System.currentTimeMillis();
-            while ((System.currentTimeMillis()-startTime)<1500 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
+            long highTime = System.currentTimeMillis();
+            while ((System.currentTimeMillis()- highTime)<1500 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
                 robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLUE_VIOLET);
 
@@ -353,7 +352,8 @@ public class teleop extends LinearOpMode {
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
 
-            while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
+            long neutralTime = System.currentTimeMillis();
+            while ((System.currentTimeMillis() - neutralTime) < 1500 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
                 joystick1LeftX = gamepad1.left_stick_x;
                 joystick1LeftY = gamepad1.left_stick_y;
@@ -406,7 +406,8 @@ public class teleop extends LinearOpMode {
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
 
-            while (robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
+            long neutral2Time = System.currentTimeMillis();
+            while ((System.currentTimeMillis() - neutral2Time) < 1500 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
                 joystick1LeftX = gamepad1.left_stick_x;
                 joystick1LeftY = gamepad1.left_stick_y;
