@@ -52,7 +52,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "RIGHTAutoLakesDS", group = "Concept")
+@Autonomous(name = "RightDefaultSleeve", group = "Concept")
 
 public class RightAutoLakesDefaultSleeve extends LinearOpMode {
 

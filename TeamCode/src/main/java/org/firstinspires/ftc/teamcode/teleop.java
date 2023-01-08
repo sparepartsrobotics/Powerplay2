@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
+import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENCODER;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -24,7 +25,7 @@ public class teleop extends LinearOpMode {
 
     double motorVelocity = 2800;
 
-    int highJunction = 1075;
+    int highJunction = 1085;
     int mediumJunction = 775;
     int lowJunction = 500;
     int groundJunction = 100;
@@ -51,10 +52,10 @@ public class teleop extends LinearOpMode {
         robot.rightSlideMotor.setPower(1);
         */
 
-//        robot.leftSlideMotor.setMode(STOP_AND_RESET_ENCODER);
-//        robot.rightSlideMotor.setMode(STOP_AND_RESET_ENCODER);
-//        robot.topSlideMotor.setMode(STOP_AND_RESET_ENCODER);
-//        robot.bottomSlideMotor.setMode(STOP_AND_RESET_ENCODER);
+        robot.leftSlideMotor.setMode(STOP_AND_RESET_ENCODER);
+        robot.rightSlideMotor.setMode(STOP_AND_RESET_ENCODER);
+        robot.topSlideMotor.setMode(STOP_AND_RESET_ENCODER);
+        robot.bottomSlideMotor.setMode(STOP_AND_RESET_ENCODER);
 
         waitForStart();
 
@@ -73,10 +74,10 @@ public class teleop extends LinearOpMode {
         telemetry.addData("bottomMotor", robot.leftSlideMotor.getCurrentPosition());
 
         //teleOp
-        if(time < 75) {
+        if(time < 85) {
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE);
-        //END of ENDGAME
-        } else if (time > 80) {
+        //ENDGAME
+        } else if (time > 90) {
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
         //Right BEFORE ENDGAME
         } else{
@@ -109,12 +110,12 @@ public class teleop extends LinearOpMode {
         }
 
         if (gamepad1.right_bumper) {
-            robot.claw.setPosition(0.2);
+            robot.claw.setPosition(0.15);
         }
 
         if (gamepad1.a) {
 
-            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.LAWN_GREEN);
+            robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.DARK_GREEN);
 
             int slideJunctionTarget;
             slideJunctionTarget = groundJunction;
@@ -154,7 +155,7 @@ public class teleop extends LinearOpMode {
                 }
 
                 if (gamepad1.left_bumper) {
-                    robot.claw.setPosition(0.2);
+                    robot.claw.setPosition(0.15);
                 }
             }
 
@@ -210,7 +211,7 @@ public class teleop extends LinearOpMode {
                 }
 
                 if (gamepad1.left_bumper) {
-                    robot.claw.setPosition(0.2);
+                    robot.claw.setPosition(0.15);
                 }
             }
             robot.leftSlideMotor.setPower(0);
@@ -265,7 +266,7 @@ public class teleop extends LinearOpMode {
                 }
 
                 if (gamepad1.left_bumper) {
-                    robot.claw.setPosition(0.2);
+                    robot.claw.setPosition(0.15);
                 }
             }
             robot.leftSlideMotor.setPower(0);
@@ -298,7 +299,7 @@ public class teleop extends LinearOpMode {
             robot.bottomSlideMotor.setVelocity(motorVelocity);
 
             long highTime = System.currentTimeMillis();
-            while ((System.currentTimeMillis()- highTime)<1500 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
+            while ((System.currentTimeMillis()- highTime)<1800 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
                 robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLUE_VIOLET);
 
@@ -321,7 +322,7 @@ public class teleop extends LinearOpMode {
                 }
 
                 if (gamepad1.left_bumper) {
-                    robot.claw.setPosition(0.2);
+                    robot.claw.setPosition(0.15);
                 }
             }
             robot.leftSlideMotor.setPower(0);
@@ -353,7 +354,7 @@ public class teleop extends LinearOpMode {
             robot.bottomSlideMotor.setVelocity(motorVelocity);
 
             long neutralTime = System.currentTimeMillis();
-            while ((System.currentTimeMillis() - neutralTime) < 1500 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
+            while ((System.currentTimeMillis() - neutralTime) < 2300 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
                 joystick1LeftX = gamepad1.left_stick_x;
                 joystick1LeftY = gamepad1.left_stick_y;
@@ -374,7 +375,7 @@ public class teleop extends LinearOpMode {
                 }
 
                 if (gamepad1.left_bumper) {
-                    robot.claw.setPosition(0.2);
+                    robot.claw.setPosition(0.15);
                 }
             }
             robot.leftSlideMotor.setPower(0);
@@ -396,7 +397,8 @@ public class teleop extends LinearOpMode {
             robot.rightSlideMotor.setTargetPosition(slideJunctionTarget);
             robot.topSlideMotor.setTargetPosition(slideJunctionTarget);
             robot.bottomSlideMotor.setTargetPosition(slideJunctionTarget);
-            robot.claw.setPosition(0.2);
+            robot.claw.setPosition(0
+            );
             robot.leftSlideMotor.setMode(RUN_TO_POSITION);
             robot.rightSlideMotor.setMode(RUN_TO_POSITION);
             robot.topSlideMotor.setMode(RUN_TO_POSITION);
@@ -407,7 +409,7 @@ public class teleop extends LinearOpMode {
             robot.bottomSlideMotor.setVelocity(motorVelocity);
 
             long neutral2Time = System.currentTimeMillis();
-            while ((System.currentTimeMillis() - neutral2Time) < 1500 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
+            while ((System.currentTimeMillis() - neutral2Time) < 2300 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
                 joystick1LeftX = gamepad1.left_stick_x;
                 joystick1LeftY = gamepad1.left_stick_y;
@@ -428,7 +430,7 @@ public class teleop extends LinearOpMode {
                 }
 
                 if (gamepad1.left_bumper) {
-                    robot.claw.setPosition(0.2);
+                    robot.claw.setPosition(0.15);
                 }
             }
             robot.leftSlideMotor.setPower(0);
@@ -478,7 +480,7 @@ public class teleop extends LinearOpMode {
                 }
 
                 if (gamepad1.left_bumper) {
-                    robot.claw.setPosition(0.2);
+                    robot.claw.setPosition(0.15);
                 }
             }
             robot.leftSlideMotor.setPower(0);
@@ -528,7 +530,7 @@ public class teleop extends LinearOpMode {
                 }
 
                 if (gamepad1.left_bumper) {
-                    robot.claw.setPosition(0.2);
+                    robot.claw.setPosition(0.15);
                 }
             }
             robot.leftSlideMotor.setPower(0);
@@ -578,7 +580,7 @@ public class teleop extends LinearOpMode {
                 }
 
                 if (gamepad1.left_bumper) {
-                    robot.claw.setPosition(0.2);
+                    robot.claw.setPosition(0.15);
                 }
             }
             robot.leftSlideMotor.setPower(0);
@@ -628,7 +630,7 @@ public class teleop extends LinearOpMode {
                 }
 
                 if (gamepad1.left_bumper) {
-                    robot.claw.setPosition(0.2);
+                    robot.claw.setPosition(0.15);
                 }
             }
             robot.leftSlideMotor.setPower(0);
