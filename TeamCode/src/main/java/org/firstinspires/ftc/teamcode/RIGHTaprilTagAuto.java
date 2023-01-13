@@ -62,6 +62,8 @@ public class RIGHTaprilTagAuto extends LinearOpMode {
     int middlePosition = 2;
     int rightPosition = 3;
 
+    double motorVelocity = 2800;
+
     AprilTagDetection tagOfInterest = null;
 
     Robot robot;
@@ -76,7 +78,7 @@ public class RIGHTaprilTagAuto extends LinearOpMode {
 
     int autoPosition = 50;
     int neutralPosition = -20;
-    int highJunction = 1075;
+    int highJunction = 1120;
 
     @Override
     public void runOpMode() {
@@ -101,13 +103,24 @@ public class RIGHTaprilTagAuto extends LinearOpMode {
 
         robot = new Robot(hardwareMap);
 
+        telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
+        telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
+        telemetry.addData("topMotor", robot.leftSlideMotor.getCurrentPosition());
+        telemetry.addData("bottomMotor", robot.leftSlideMotor.getCurrentPosition());
+
         robot.claw.setPosition(0.2);
         sleep(500);
-        robot.rightSlideMotor.setTargetPosition(autoPosition);
         robot.leftSlideMotor.setTargetPosition(autoPosition);
+        robot.rightSlideMotor.setTargetPosition(autoPosition);
+        robot.topSlideMotor.setTargetPosition(autoPosition);
+        robot.bottomSlideMotor.setTargetPosition(autoPosition);
         robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.leftSlideMotor.setPower(1);
+        robot.rightSlideMotor.setPower(1);
+        robot.rightSlideMotor.setPower(1);
         robot.rightSlideMotor.setPower(1);
 
         robot.rearRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -117,11 +130,8 @@ public class RIGHTaprilTagAuto extends LinearOpMode {
 
         robot.leftSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         robot.rightSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        robot.topSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        robot.bottomSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_BLUE);
-
         /*
          * The INIT-loop:
          * This REPLACES waitForStart!
@@ -187,11 +197,11 @@ public class RIGHTaprilTagAuto extends LinearOpMode {
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GRAY);
         }
 
-        /* Actually move now */
+        /* Actually do something useful */
         if (tagOfInterest == null || tagOfInterest.id == leftPosition) {
             forward(DRIVE_SPEED, 3, 15);
             strafeRight(DRIVE_SPEED, 8, 15);
-            forward(DRIVE_SPEED, 27, 15);
+            forward(DRIVE_SPEED, 51, 15);
 
             robot.rightSlideMotor.setTargetPosition(highJunction);
             robot.leftSlideMotor.setTargetPosition(highJunction);
@@ -203,21 +213,18 @@ public class RIGHTaprilTagAuto extends LinearOpMode {
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
-            robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-            strafeRight(DRIVE_SPEED, 12, 15);
-            forward(SLOW_DRIVE_SPEED, 5, 15);
+            sleep(1500);
+            strafeLeft(DRIVE_SPEED, 10.5, 15);
+            sleep(250);
+            forward(SLOW_DRIVE_SPEED, 2, 15);
             robot.claw.setPosition(0.5);
             sleep(500);
-            backward(DRIVE_SPEED, 8, 15);
+            backward(DRIVE_SPEED, 5, 15);
             robot.claw.setPosition(0.2);
 
             robot.rightSlideMotor.setTargetPosition(neutralPosition);
@@ -230,17 +237,17 @@ public class RIGHTaprilTagAuto extends LinearOpMode {
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
-            strafeLeft(DRIVE_SPEED, 46, 15);
+            strafeLeft(DRIVE_SPEED, 15, 15);
 
         } else if (tagOfInterest.id == middlePosition) {
             forward(DRIVE_SPEED, 3, 15);
             strafeRight(DRIVE_SPEED, 8, 15);
-            forward(DRIVE_SPEED, 27, 15);
+            forward(DRIVE_SPEED, 51, 15);
 
             robot.rightSlideMotor.setTargetPosition(highJunction);
             robot.leftSlideMotor.setTargetPosition(highJunction);
@@ -252,21 +259,18 @@ public class RIGHTaprilTagAuto extends LinearOpMode {
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
-            robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-            strafeRight(DRIVE_SPEED, 12, 15);
-            forward(SLOW_DRIVE_SPEED, 5, 15);
+            sleep(1500);
+            strafeLeft(DRIVE_SPEED, 10.5, 15);
+            sleep(250);
+            forward(SLOW_DRIVE_SPEED, 2, 15);
             robot.claw.setPosition(0.5);
             sleep(500);
-            backward(DRIVE_SPEED, 8, 15);
+            backward(DRIVE_SPEED, 5, 15);
             robot.claw.setPosition(0.2);
 
             robot.rightSlideMotor.setTargetPosition(neutralPosition);
@@ -279,17 +283,17 @@ public class RIGHTaprilTagAuto extends LinearOpMode {
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
-            strafeLeft(DRIVE_SPEED, 16, 15);
+            strafeRight(DRIVE_SPEED, 12, 15);
 
         } else if (tagOfInterest.id == rightPosition) {
             forward(DRIVE_SPEED, 3, 15);
             strafeRight(DRIVE_SPEED, 8, 15);
-            forward(DRIVE_SPEED, 27, 15);
+            forward(DRIVE_SPEED, 51, 15);
 
             robot.rightSlideMotor.setTargetPosition(highJunction);
             robot.leftSlideMotor.setTargetPosition(highJunction);
@@ -301,22 +305,18 @@ public class RIGHTaprilTagAuto extends LinearOpMode {
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
-            robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-
-            strafeRight(DRIVE_SPEED, 12, 15);
-            forward(SLOW_DRIVE_SPEED, 5, 15);
+            sleep(1500);
+            strafeLeft(DRIVE_SPEED, 10.5, 15);
+            sleep(250);
+            forward(SLOW_DRIVE_SPEED, 2, 15);
             robot.claw.setPosition(0.5);
             sleep(500);
-            backward(DRIVE_SPEED, 8, 15);
+            backward(DRIVE_SPEED, 5, 15);
             robot.claw.setPosition(0.2);
 
             robot.rightSlideMotor.setTargetPosition(neutralPosition);
@@ -329,13 +329,14 @@ public class RIGHTaprilTagAuto extends LinearOpMode {
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            robot.leftSlideMotor.setPower(1);
-            robot.rightSlideMotor.setPower(1);
-            robot.topSlideMotor.setPower(1);
-            robot.bottomSlideMotor.setPower(1);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
 
-            strafeRight(DRIVE_SPEED, 15, 15);
+            strafeRight(DRIVE_SPEED, 46, 15);
         }
+        telemetry.update();
     }
 
     void tagToTelemetry(AprilTagDetection detection) {

@@ -25,10 +25,10 @@ public class teleop extends LinearOpMode {
 
     double motorVelocity = 2800;
 
-    int highJunction = 1085;
+    int highJunction = 1135;
     int mediumJunction = 775;
-    int lowJunction = 500;
-    int groundJunction = 100;
+    int lowJunction = 450;
+    int groundJunction = 80;
 
     int neutralPosition = 0;
 
@@ -69,17 +69,17 @@ public class teleop extends LinearOpMode {
 
         telemetry.addData("time",time);
         telemetry.addData("leftMotor", robot.leftSlideMotor.getCurrentPosition());
-        telemetry.addData("rightMotor", robot.leftSlideMotor.getCurrentPosition());
-        telemetry.addData("topMotor", robot.leftSlideMotor.getCurrentPosition());
-        telemetry.addData("bottomMotor", robot.leftSlideMotor.getCurrentPosition());
+        telemetry.addData("rightMotor", robot.rightSlideMotor.getCurrentPosition());
+        telemetry.addData("topMotor", robot.topSlideMotor.getCurrentPosition());
+        telemetry.addData("bottomMotor", robot.bottomSlideMotor.getCurrentPosition());
 
         //teleOp
         if(time < 85) {
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_PARTY_PALETTE);
-        //ENDGAME
+            //ENDGAME
         } else if (time > 90) {
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
-        //Right BEFORE ENDGAME
+            //Right BEFORE ENDGAME
         } else{
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.STROBE_RED);
         }
@@ -94,15 +94,15 @@ public class teleop extends LinearOpMode {
         brMotorPower = joystick1LeftY - joystick1LeftX + joystick1RightX;
 
         if (gamepad1.right_trigger > 0) {
-            robot.frontLeft.setPower(flMotorPower / 1.33);
-            robot.frontRight.setPower(frMotorPower / 1.33);
-            robot.rearRight.setPower(brMotorPower / 1.33);
-            robot.rearLeft.setPower(blMotorPower / 1.33);
+            robot.leftSlideMotor.setVelocity(motorVelocity);
+            robot.rightSlideMotor.setVelocity(motorVelocity);
+            robot.topSlideMotor.setVelocity(motorVelocity);
+            robot.bottomSlideMotor.setVelocity(motorVelocity);
         } else {
-            robot.frontLeft.setPower(flMotorPower * 0.35);
-            robot.frontRight.setPower(frMotorPower * 0.35);
-            robot.rearRight.setPower(brMotorPower * 0.35);
-            robot.rearLeft.setPower(blMotorPower * 0.35);
+            robot.leftSlideMotor.setPower(0);
+            robot.rightSlideMotor.setPower(0);
+            robot.topSlideMotor.setPower(0);
+            robot.bottomSlideMotor.setPower(0);
         }
 
         if (gamepad1.left_bumper) {
@@ -113,6 +113,23 @@ public class teleop extends LinearOpMode {
             robot.claw.setPosition(0.15);
         }
 
+        if (gamepad1.left_trigger > 0.5)  {
+
+            robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+            robot.leftSlideMotor.setVelocity(-.70*motorVelocity);
+            robot.rightSlideMotor.setVelocity(-.40*motorVelocity);
+            robot.topSlideMotor.setVelocity(-.70*motorVelocity);
+            robot.bottomSlideMotor.setVelocity(-.70*motorVelocity);
+        } else {
+            robot.leftSlideMotor.setPower(0);
+            robot.rightSlideMotor.setPower(0);
+            robot.topSlideMotor.setPower(0);
+            robot.bottomSlideMotor.setPower(0);
+        }
         if (gamepad1.a) {
 
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.DARK_GREEN);
@@ -391,39 +408,19 @@ public class teleop extends LinearOpMode {
 
         if (gamepad1.right_stick_button) {
 
-            int slideJunctionTarget;
-            slideJunctionTarget = neutralPosition;
-            robot.leftSlideMotor.setTargetPosition(slideJunctionTarget);
-            robot.rightSlideMotor.setTargetPosition(slideJunctionTarget);
-            robot.topSlideMotor.setTargetPosition(slideJunctionTarget);
-            robot.bottomSlideMotor.setTargetPosition(slideJunctionTarget);
-            robot.claw.setPosition(0
-            );
-            robot.leftSlideMotor.setMode(RUN_TO_POSITION);
-            robot.rightSlideMotor.setMode(RUN_TO_POSITION);
-            robot.topSlideMotor.setMode(RUN_TO_POSITION);
-            robot.bottomSlideMotor.setMode(RUN_TO_POSITION);
-            robot.leftSlideMotor.setVelocity(motorVelocity);
-            robot.rightSlideMotor.setVelocity(motorVelocity);
-            robot.topSlideMotor.setVelocity(motorVelocity);
-            robot.bottomSlideMotor.setVelocity(motorVelocity);
+            robot.frontLeft.setPower(flMotorPower / 1.33);
+            robot.frontRight.setPower(frMotorPower / 1.33);
+            robot.rearRight.setPower(brMotorPower / 1.33);
+            robot.rearLeft.setPower(blMotorPower / 1.33);
+        } else {
+            robot.frontLeft.setPower(flMotorPower * 0.35);
+            robot.frontRight.setPower(frMotorPower * 0.35);
+            robot.rearRight.setPower(brMotorPower * 0.35);
+            robot.rearLeft.setPower(blMotorPower * 0.35);
 
             long neutral2Time = System.currentTimeMillis();
             while ((System.currentTimeMillis() - neutral2Time) < 2300 && robot.leftSlideMotor.isBusy() && robot.rightSlideMotor.isBusy() && robot.topSlideMotor.isBusy() && robot.bottomSlideMotor.isBusy()) {
 
-                joystick1LeftX = gamepad1.left_stick_x;
-                joystick1LeftY = gamepad1.left_stick_y;
-                joystick1RightX = gamepad1.right_stick_x;
-
-                flMotorPower = joystick1LeftY - joystick1LeftX - joystick1RightX;
-                frMotorPower = joystick1LeftY + joystick1LeftX + joystick1RightX;
-                brMotorPower = joystick1LeftY - joystick1LeftX + joystick1RightX;
-                blMotorPower = joystick1LeftY + joystick1LeftX - joystick1RightX;
-
-                robot.frontLeft.setPower(flMotorPower * 0.35);
-                robot.frontRight.setPower(frMotorPower * 0.35);
-                robot.rearRight.setPower(brMotorPower * 0.35);
-                robot.rearLeft.setPower(blMotorPower * 0.35);
 
                 if (gamepad1.right_bumper) {
                     robot.claw.setPosition(0.5);
@@ -645,4 +642,3 @@ public class teleop extends LinearOpMode {
         telemetry.update();
     }
 }
-
