@@ -23,19 +23,19 @@ public class teleop extends LinearOpMode {
     double joystick1RightX;
     double joystick1LeftY;
 
-    double motorVelocity = 2800;
+    double motorVelocity = 1400;
 
     int highJunction = 1135;
     int mediumJunction = 775;
-    int lowJunction = 450;
+    int lowJunction = 475;
     int groundJunction = 80;
 
     int neutralPosition = 0;
 
-    int conePosition5 = 150;
-    int conePosition4 = 115;
+    int conePosition5 = 190;
+    int conePosition4 = 140;
     int conePosition3 = 90;
-    int conePosition2 = 65;
+    int conePosition2 = 50;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -94,10 +94,10 @@ public class teleop extends LinearOpMode {
         brMotorPower = joystick1LeftY - joystick1LeftX + joystick1RightX;
 
         if (gamepad1.right_trigger > 0) {
-            robot.leftSlideMotor.setVelocity(motorVelocity);
-            robot.rightSlideMotor.setVelocity(motorVelocity);
-            robot.topSlideMotor.setVelocity(motorVelocity);
-            robot.bottomSlideMotor.setVelocity(motorVelocity);
+            robot.leftSlideMotor.setVelocity(motorVelocity*.7);
+            robot.rightSlideMotor.setVelocity(motorVelocity*.7);
+            robot.topSlideMotor.setVelocity(motorVelocity*.7);
+            robot.bottomSlideMotor.setVelocity(motorVelocity*.7);
         } else {
             robot.leftSlideMotor.setPower(0);
             robot.rightSlideMotor.setPower(0);
@@ -113,15 +113,10 @@ public class teleop extends LinearOpMode {
             robot.claw.setPosition(0.15);
         }
 
-        if (gamepad1.left_trigger > 0.5)  {
-
-            robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        if (gamepad1.left_trigger > 0)  {
 
             robot.leftSlideMotor.setVelocity(-.70*motorVelocity);
-            robot.rightSlideMotor.setVelocity(-.40*motorVelocity);
+            robot.rightSlideMotor.setVelocity(-.70*motorVelocity);
             robot.topSlideMotor.setVelocity(-.70*motorVelocity);
             robot.bottomSlideMotor.setVelocity(-.70*motorVelocity);
         } else {

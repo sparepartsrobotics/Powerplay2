@@ -78,7 +78,7 @@ public class LEFTaprilTagAuto extends LinearOpMode {
 
     int autoPosition = 50;
     int neutralPosition = -20;
-    int highJunction = 1120;
+    int mediumJunction = 765;
 
     @Override
     public void runOpMode() {
@@ -199,142 +199,115 @@ public class LEFTaprilTagAuto extends LinearOpMode {
 
         /* Actually do something useful */
         if (tagOfInterest == null || tagOfInterest.id == leftPosition) {
-            forward(DRIVE_SPEED, 3, 15);
+            forward(DRIVE_SPEED, 3,15);
             strafeRight(DRIVE_SPEED, 8, 15);
-            forward(DRIVE_SPEED, 51, 15);
-
-            robot.rightSlideMotor.setTargetPosition(highJunction);
-            robot.leftSlideMotor.setTargetPosition(highJunction);
-            robot.topSlideMotor.setTargetPosition(highJunction);
-            robot.bottomSlideMotor.setTargetPosition(highJunction);
-
+            forward(DRIVE_SPEED, 27, 15);
+            robot.rightSlideMotor.setTargetPosition(mediumJunction);
+            robot.leftSlideMotor.setTargetPosition(mediumJunction);
+            robot.topSlideMotor.setTargetPosition(mediumJunction);
+            robot.bottomSlideMotor.setTargetPosition(mediumJunction);
             robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
             robot.leftSlideMotor.setVelocity(motorVelocity);
             robot.rightSlideMotor.setVelocity(motorVelocity);
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
-
-            sleep(1500);
-            strafeRight(DRIVE_SPEED, 10.5, 15);
-            sleep(250);
-            forward(SLOW_DRIVE_SPEED, 2, 15);
+            sleep(1000);
+            strafeRight(DRIVE_SPEED, 9.5, 15);
+            forward(SLOW_DRIVE_SPEED, 3, 15);
             robot.claw.setPosition(0.5);
             sleep(500);
             backward(DRIVE_SPEED, 5, 15);
             robot.claw.setPosition(0.2);
-
             robot.rightSlideMotor.setTargetPosition(neutralPosition);
             robot.leftSlideMotor.setTargetPosition(neutralPosition);
             robot.topSlideMotor.setTargetPosition(neutralPosition);
             robot.bottomSlideMotor.setTargetPosition(neutralPosition);
-
             robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
             robot.leftSlideMotor.setVelocity(motorVelocity);
             robot.rightSlideMotor.setVelocity(motorVelocity);
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
-
-            strafeLeft(DRIVE_SPEED, 42, 15);
+            strafeLeft(DRIVE_SPEED, 46, 15);
 
         } else if (tagOfInterest.id == middlePosition) {
-            forward(DRIVE_SPEED, 3, 15);
+            forward(DRIVE_SPEED, 3,15);
             strafeRight(DRIVE_SPEED, 8, 15);
-            forward(DRIVE_SPEED, 51, 15);
-
-            robot.rightSlideMotor.setTargetPosition(highJunction);
-            robot.leftSlideMotor.setTargetPosition(highJunction);
-            robot.topSlideMotor.setTargetPosition(highJunction);
-            robot.bottomSlideMotor.setTargetPosition(highJunction);
-
+            forward(DRIVE_SPEED, 27, 15);
+            robot.rightSlideMotor.setTargetPosition(mediumJunction);
+            robot.leftSlideMotor.setTargetPosition(mediumJunction);
+            robot.topSlideMotor.setTargetPosition(mediumJunction);
+            robot.bottomSlideMotor.setTargetPosition(mediumJunction);
             robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
             robot.leftSlideMotor.setVelocity(motorVelocity);
             robot.rightSlideMotor.setVelocity(motorVelocity);
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
-
-            sleep(1500);
-            strafeRight(DRIVE_SPEED, 10.5, 15);
-            sleep(250);
-            forward(SLOW_DRIVE_SPEED, 2, 15);
+            sleep(1000);
+            strafeRight(DRIVE_SPEED, 9.5, 15);
+            forward(SLOW_DRIVE_SPEED, 3, 15);
             robot.claw.setPosition(0.5);
             sleep(500);
             backward(DRIVE_SPEED, 5, 15);
             robot.claw.setPosition(0.2);
-
             robot.rightSlideMotor.setTargetPosition(neutralPosition);
             robot.leftSlideMotor.setTargetPosition(neutralPosition);
             robot.topSlideMotor.setTargetPosition(neutralPosition);
             robot.bottomSlideMotor.setTargetPosition(neutralPosition);
-
             robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
             robot.leftSlideMotor.setVelocity(motorVelocity);
             robot.rightSlideMotor.setVelocity(motorVelocity);
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
-
-            strafeLeft(DRIVE_SPEED, 13, 15);
+            strafeLeft(DRIVE_SPEED, 16, 15);
 
         } else if (tagOfInterest.id == rightPosition) {
-            forward(DRIVE_SPEED, 3, 15);
+            forward(DRIVE_SPEED, 3,15);
             strafeRight(DRIVE_SPEED, 8, 15);
-            forward(DRIVE_SPEED, 51, 15);
-
-            robot.rightSlideMotor.setTargetPosition(highJunction);
-            robot.leftSlideMotor.setTargetPosition(highJunction);
-            robot.topSlideMotor.setTargetPosition(highJunction);
-            robot.bottomSlideMotor.setTargetPosition(highJunction);
-
+            forward(DRIVE_SPEED, 27, 15);
+            robot.rightSlideMotor.setTargetPosition(mediumJunction);
+            robot.leftSlideMotor.setTargetPosition(mediumJunction);
+            robot.topSlideMotor.setTargetPosition(mediumJunction);
+            robot.bottomSlideMotor.setTargetPosition(mediumJunction);
             robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
             robot.leftSlideMotor.setVelocity(motorVelocity);
             robot.rightSlideMotor.setVelocity(motorVelocity);
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
-
-            sleep(1500);
-            strafeRight(DRIVE_SPEED, 10.5, 15);
-            sleep(250);
-            forward(SLOW_DRIVE_SPEED, 2, 15);
+            sleep(1000);
+            strafeRight(DRIVE_SPEED, 9.5, 15);
+            forward(SLOW_DRIVE_SPEED, 3, 15);
             robot.claw.setPosition(0.5);
             sleep(500);
             backward(DRIVE_SPEED, 5, 15);
             robot.claw.setPosition(0.2);
-
             robot.rightSlideMotor.setTargetPosition(neutralPosition);
             robot.leftSlideMotor.setTargetPosition(neutralPosition);
             robot.topSlideMotor.setTargetPosition(neutralPosition);
             robot.bottomSlideMotor.setTargetPosition(neutralPosition);
-
             robot.leftSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.rightSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.topSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.bottomSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
             robot.leftSlideMotor.setVelocity(motorVelocity);
             robot.rightSlideMotor.setVelocity(motorVelocity);
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
-
-            strafeRight(DRIVE_SPEED, 14, 15);
+            strafeRight(DRIVE_SPEED, 15, 15);
         }
         telemetry.update();
     }
