@@ -28,7 +28,7 @@ public class teleop extends LinearOpMode {
     int highJunction = 1135;
     int mediumJunction = 775;
     int lowJunction = 475;
-    int groundJunction = 80;
+    int beaconPosition = 24;
 
     int neutralPosition = 0;
 
@@ -130,7 +130,7 @@ public class teleop extends LinearOpMode {
             robot.rgbDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.DARK_GREEN);
 
             int slideJunctionTarget;
-            slideJunctionTarget = groundJunction;
+            slideJunctionTarget = beaconPosition;
             robot.leftSlideMotor.setTargetPosition(slideJunctionTarget);
             robot.rightSlideMotor.setTargetPosition(slideJunctionTarget);
             robot.topSlideMotor.setTargetPosition(slideJunctionTarget);

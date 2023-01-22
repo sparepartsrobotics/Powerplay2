@@ -39,7 +39,7 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 import java.util.ArrayList;
 
 @Autonomous
-public class LEFTRegionalsAuto extends LinearOpMode {
+public class RIGHTRegionalsAuto extends LinearOpMode {
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
@@ -79,7 +79,7 @@ public class LEFTRegionalsAuto extends LinearOpMode {
 
     int neutralPosition = -20;
     int autoPosition = 50;
-    int conePosition5 = 190;
+    int conePosition5 = 100;
     int autoPosition2 = 325;
     int mediumJunction = 765;
     int highJunction = 1090;
@@ -204,8 +204,8 @@ public class LEFTRegionalsAuto extends LinearOpMode {
         /* Actually do something useful */
         if (tagOfInterest == null || tagOfInterest.id == leftPosition) {
             forward(DRIVE_SPEED, 3,15);
-            strafeRight(DRIVE_SPEED, 6, 15);
-            forward(DRIVE_SPEED, 49, 15);
+            strafeRight(DRIVE_SPEED, 4.5, 15);
+            forward(DRIVE_SPEED, 52, 15);
             robot.rightSlideMotor.setTargetPosition(highJunction);
             robot.leftSlideMotor.setTargetPosition(highJunction);
             robot.topSlideMotor.setTargetPosition(highJunction);
@@ -219,11 +219,11 @@ public class LEFTRegionalsAuto extends LinearOpMode {
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
             sleep(1500);
-            strafeRight(DRIVE_SPEED, 12, 15);
-            forward(SLOW_DRIVE_SPEED, 3, 15);
+            strafeLeft(DRIVE_SPEED, 18, 15);
+            forward(SLOW_DRIVE_SPEED, 6, 15);
             robot.claw.setPosition(0.5);
             sleep(500);
-            backward(DRIVE_SPEED, 2.5, 15);
+            backward(DRIVE_SPEED, 8.5, 15);
             robot.claw.setPosition(0.2);
             robot.rightSlideMotor.setTargetPosition(neutralPosition);
             robot.leftSlideMotor.setTargetPosition(neutralPosition);
@@ -237,8 +237,8 @@ public class LEFTRegionalsAuto extends LinearOpMode {
             robot.rightSlideMotor.setVelocity(motorVelocity);
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
-            strafeLeft(DRIVE_SPEED, 42, 15);
-            left(DRIVE_SPEED, 85, 15);
+            strafeRight(DRIVE_SPEED, 40, 15);
+            right(DRIVE_SPEED, 85, 15);
             robot.claw.setPosition(0.5);
             sleep(250);
             forward(DRIVE_SPEED, 4, 15);
@@ -273,7 +273,7 @@ public class LEFTRegionalsAuto extends LinearOpMode {
             robot.bottomSlideMotor.setVelocity(motorVelocity);
             sleep(500);
             backward(DRIVE_SPEED,50,15);
-            strafeRight(DRIVE_SPEED,13,15);
+            strafeLeft(DRIVE_SPEED,14.5,15);
             sleep(250);
             robot.rightSlideMotor.setTargetPosition(highJunction);
             robot.leftSlideMotor.setTargetPosition(highJunction);
@@ -292,8 +292,8 @@ public class LEFTRegionalsAuto extends LinearOpMode {
             sleep(250);
             robot.claw.setPosition(0.5);
             sleep(500);
-            backward(DRIVE_SPEED,2,15);
-            strafeLeft(DRIVE_SPEED,13.5,15);
+            backward(DRIVE_SPEED,4,15);
+            strafeRight(DRIVE_SPEED,14,15);
             robot.claw.setPosition(.2);
             robot.rightSlideMotor.setTargetPosition(neutralPosition);
             robot.leftSlideMotor.setTargetPosition(neutralPosition);
@@ -307,13 +307,13 @@ public class LEFTRegionalsAuto extends LinearOpMode {
             robot.rightSlideMotor.setVelocity(motorVelocity);
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
-            forward(DRIVE_SPEED,46,15);
+            sleep(1000);
             robot.claw.setPosition(.5);
 
         } else if (tagOfInterest.id == middlePosition) {
             forward(DRIVE_SPEED, 3,15);
-            strafeRight(DRIVE_SPEED, 6, 15);
-            forward(DRIVE_SPEED, 49, 15);
+            strafeRight(DRIVE_SPEED, 4.5, 15);
+            forward(DRIVE_SPEED, 52, 15);
             robot.rightSlideMotor.setTargetPosition(highJunction);
             robot.leftSlideMotor.setTargetPosition(highJunction);
             robot.topSlideMotor.setTargetPosition(highJunction);
@@ -327,11 +327,11 @@ public class LEFTRegionalsAuto extends LinearOpMode {
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
             sleep(1500);
-            strafeRight(DRIVE_SPEED, 12, 15);
-            forward(SLOW_DRIVE_SPEED, 3, 15);
+            strafeLeft(DRIVE_SPEED, 18, 15);
+            forward(SLOW_DRIVE_SPEED, 6, 15);
             robot.claw.setPosition(0.5);
             sleep(500);
-            backward(DRIVE_SPEED, 2.5, 15);
+            backward(DRIVE_SPEED, 8.5, 15);
             robot.claw.setPosition(0.2);
             robot.rightSlideMotor.setTargetPosition(neutralPosition);
             robot.leftSlideMotor.setTargetPosition(neutralPosition);
@@ -345,8 +345,8 @@ public class LEFTRegionalsAuto extends LinearOpMode {
             robot.rightSlideMotor.setVelocity(motorVelocity);
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
-            strafeLeft(DRIVE_SPEED, 42, 15);
-            left(DRIVE_SPEED, 85, 15);
+            strafeRight(DRIVE_SPEED, 40, 15);
+            right(DRIVE_SPEED, 85, 15);
             robot.claw.setPosition(0.5);
             sleep(250);
             forward(DRIVE_SPEED, 4, 15);
@@ -381,7 +381,7 @@ public class LEFTRegionalsAuto extends LinearOpMode {
             robot.bottomSlideMotor.setVelocity(motorVelocity);
             sleep(500);
             backward(DRIVE_SPEED,50,15);
-            strafeRight(DRIVE_SPEED,13,15);
+            strafeLeft(DRIVE_SPEED,14.5,15);
             sleep(250);
             robot.rightSlideMotor.setTargetPosition(highJunction);
             robot.leftSlideMotor.setTargetPosition(highJunction);
@@ -400,8 +400,8 @@ public class LEFTRegionalsAuto extends LinearOpMode {
             sleep(250);
             robot.claw.setPosition(0.5);
             sleep(500);
-            backward(DRIVE_SPEED,2,15);
-            strafeLeft(DRIVE_SPEED,13.5,15);
+            backward(DRIVE_SPEED,4,15);
+            strafeRight(DRIVE_SPEED,14,15);
             robot.claw.setPosition(.2);
             robot.rightSlideMotor.setTargetPosition(neutralPosition);
             robot.leftSlideMotor.setTargetPosition(neutralPosition);
@@ -523,7 +523,7 @@ public class LEFTRegionalsAuto extends LinearOpMode {
             robot.rightSlideMotor.setVelocity(motorVelocity);
             robot.topSlideMotor.setVelocity(motorVelocity);
             robot.bottomSlideMotor.setVelocity(motorVelocity);
-            sleep(1000);
+            forward(DRIVE_SPEED,46,15);
             robot.claw.setPosition(.5);
         }
         telemetry.update();
